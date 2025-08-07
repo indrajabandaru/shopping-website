@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Shopping Mall - Where Shopping Never Ends</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff4757 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffeb3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b35, #f7931e, #ff4757);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.6);
+            background: linear-gradient(45deg, #ff4757, #ff6b35, #f7931e);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.15);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.25);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        /* Interactive Counter */
+        .interactive-counter {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.3);
+        }
+
+        .counter-number {
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Mall Map */
+        .mall-map {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 35px rgba(108, 92, 231, 0.3);
+        }
+
+        .floor-button {
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3);
+        }
+
+        .floor-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(232, 67, 147, 0.5);
+        }
+
+        .floor-button.active {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.5);
+        }
+
+        /* Stores Section */
+        .stores {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 50%, #e17055 100%);
+            color: white;
+        }
+
+        .store-filters, .event-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: bold;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .filter-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            border-color: #00b894;
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.4);
+        }
+
+        /* Store Search */
+        .store-search {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        .store-search input {
+            width: 100%;
+            padding: 1.2rem 4rem 1.2rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .store-card {
+            background: rgba(255,255,255,0.15);
+            padding: 2rem;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .store-card:hover {
+            transform: scale(1.05);
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .store-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .store-card:hover::before {
+            left: 100%;
+        }
+
+        .store-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .store-rating {
+            color: #ffd700;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .store-hours {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        /* Events Section */
+        .events {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 50%, #0984e3 100%);
+            color: white;
+        }
+
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .view-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+        }
+
+        .view-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+
+        .view-btn.active {
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+            border-color: #fd79a8;
+            box-shadow: 0 8px 25px rgba(253, 121, 168, 0.4);
+        }
+
+        .event-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            margin-bottom: 2.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.25);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .event-content {
+            padding: 2.5rem;
+        }
+
+        .event-date {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+        }
+
+        .event-rsvp {
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(253, 121, 168, 0.3);
+        }
+
+        .event-rsvp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(253, 121, 168, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: #fdcb6e;
+            font-size: 1.5rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 3% auto;
+            padding: 3rem;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 700px;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 2rem;
+            top: 2rem;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .close:hover {
+            color: #ff4757;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+
+        /* Calendar View */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .calendar-day {
+            background: rgba(255,255,255,0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            min-height: 120px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .calendar-event {
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-event:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .store-filters, .event-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .view-toggle {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 2rem;
+            }
+
+            .stores-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">∞ INFINITY MALL</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#stores">Stores</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#dining">Dining</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to Infinity Mall</h1>
+            <p>Where Shopping Never Ends - Experience Unlimited Possibilities</p>
+            <a href="#stores" class="cta-button">Explore Now</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Infinity?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛍</div>
+                    <h3>500+ Premium Stores</h3>
+                    <p>From luxury brands to everyday essentials, find everything you need under one magnificent roof with unparalleled variety.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍽</div>
+                    <h3>World-Class Dining</h3>
+                    <p>Savor exquisite cuisines from around the world at our premium food court and fine dining restaurants.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Entertainment Hub</h3>
+                    <p>State-of-the-art IMAX cinema, thrilling gaming zones, and spectacular live entertainment for the whole family.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Free Parking</h3>
+                    <p>Spacious parking with 2000+ spots, valet service, and electric vehicle charging stations available.</p>
+                </div>
+            </div>
+
+            <!-- Interactive Counter -->
+            <div class="interactive-counter">
+                <div class="counter-number" id="visitorCounter">0</div>
+                <div style="font-size: 1.2rem; margin-top: 0.5rem;">Happy Visitors Today</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mall Map Section -->
+    <section class="container">
+        <div class="mall-map">
+            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">Interactive Mall Map</h3>
+            <div style="text-align: center;">
+                <button class="floor-button active" onclick="showFloor('ground')">Ground Floor</button>
+                <button class="floor-button" onclick="showFloor('first')">First Floor</button>
+                <button class="floor-button" onclick="showFloor('second')">Second Floor</button>
+                <button class="floor-button" onclick="showFloor('third')">Third Floor</button>
+            </div>
+            <div id="floorInfo" style="margin-top: 2rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px);">
+                <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Ground Floor - Fashion & Accessories</h4>
+                <p style="font-size: 1.1rem;">Premium fashion brands, luxury jewelry stores, cosmetics boutiques, and our grand entrance lobby with concierge services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stores Section -->
+    <section class="stores" id="stores">
+        <div class="container">
+            <h2 class="section-title">Featured Stores</h2>
+            
+            <!-- Store Filters -->
+            <div class="store-filters">
+                <button class="filter-btn active" onclick="filterStores('all')">All Stores</button>
+                <button class="filter-btn" onclick="filterStores('fashion')">Fashion</button>
+                <button class="filter-btn" onclick="filterStores('electronics')">Electronics</button>
+                <button class="filter-btn" onclick="filterStores('food')">Food & Dining</button>
+                <button class="filter-btn" onclick="filterStores('lifestyle')">Lifestyle</button>
+                <button class="filter-btn" onclick="filterStores('entertainment')">Entertainment</button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="store-search">
+                <input type="text" id="storeSearch" placeholder="Search stores..." onkeyup="searchStores()">
+                <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="stores-grid" id="storesGrid">
+                <!-- Stores will be dynamically loaded here -->
+            </div>
+            
+            <!-- Store Details Modal -->
+            <div id="storeModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeStoreModal()">&times;</span>
+                    <div id="storeDetails"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            
+            <!-- Event Filters -->
+            <div class="event-filters">
+                <button class="filter-btn active" onclick="filterEvents('all')">All Events</button>
+                <button class="filter-btn" onclick="filterEvents('fashion')">Fashion</button>
+                <button class="filter-btn" onclick="filterEvents('family')">Family</button>
+                <button class="filter-btn" onclick="filterEvents('entertainment')">Entertainment</button>
+                <button class="filter-btn" onclick="filterEvents('seasonal')">Seasonal</button>
+            </div>
+
+            <!-- Event Calendar View Toggle -->
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="toggleView('list')">📋 List View</button>
+                <button class="view-btn" onclick="toggleView('calendar')">📅 Calendar View</button>
+            </div>
+            
+            <div id="eventsContainer">
+                <!-- Events will be dynamically loaded here -->
+            </div>
+            
+            <!-- Event Details Modal -->
+            <div id="eventModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeEventModal()">&times;</span>
+                    <div id="eventDetails"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Visit Us</h3>
+                    <p>123 Infinity Boulevard<br>
+                    Downtown District, Metro City<br>
+                    Open Daily: 10:00 AM - 10:00 PM<br>
+                    Holidays: 10:00 AM - 11:00 PM</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Phone: (555) 123-MALL<br>
+                    Email: info@infinitymall.com<br>
+                    Customer Service: 24/7<br>
+                    Follow us @InfinityMall</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p>Personal Shopping Assistant<br>
+                    Digital Gift Cards<br>
+                    Premium Valet Parking<br>
+                    Concierge Services<br>
+                    Lost & Found</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Special Offers</h3>
+                    <p>VIP Membership Program<br>
+                    Student Discounts<br>
+                    Senior Citizen Benefits<br>
+                    Corporate Packages<br>
+                    Loyalty Rewards</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #636e72; padding-top: 2rem; font-size: 1.1rem;">
+                <p>&copy; 2024 Infinity Shopping Mall. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Store and Event Data with realistic images
+        const storesData = [
+            {
+                id: 1,
+                name: "Fashion Central",
+                category: "fashion",
+                description: "Latest trends and designer collections from international brands",
+                rating: 4.8,
+                hours: "10:00 AM - 10:00 PM",
+                floor: "Ground Floor",
+                phone: "(555) 123-4567",
+                offers: "20% off on winter collection + Free styling consultation",
+                image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 2,
+                name: "Tech World",
+                category: "electronics",
+                description: "Cutting-edge electronics, smartphones, and smart home gadgets",
+                rating: 4.9,
+                hours: "10:00 AM - 9:00 PM",
+                floor: "First Floor",
+                phone: "(555) 234-5678",
+                offers: "Free setup with purchase + Extended warranty",
+                image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 3,
+                name: "Home & Living",
+                category: "lifestyle",
+                description: "Beautiful furniture, home decor, and interior design solutions",
+                rating: 4.7,
+                hours: "10:00 AM - 8:00 PM",
+                floor: "Third Floor",
+                phone: "(555) 345-6789",
+                offers: "Buy 2 Get 1 Free on decor items + Free home consultation",
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 4,
+                name: "Sports Zone",
+                category: "lifestyle",
+                description: "Premium athletic wear, sports equipment, and fitness gear",
+                rating: 4.6,
+                hours: "9:00 AM - 9:00 PM",
+                floor: "Second Floor",
+                phone: "(555) 456-7890",
+                offers: "30% off on fitness gear + Free personal training session",
+                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 5,
+                name: "Beauty Corner",
+                category: "fashion",
+                description: "Luxury cosmetics, skincare, and wellness products",
+                rating: 4.8,
+                hours: "10:00 AM - 10:00 PM",
+                floor: "Ground Floor",
+                phone: "(555) 567-8901",
+                offers: "Free makeover consultation + 25% off premium brands",
+                image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 6,
+                name: "Kids Paradise",
+                category: "lifestyle",
+                description: "Educational toys, games, children's clothing, and play area",
+                rating: 4.9,
+                hours: "10:00 AM - 9:00 PM",
+                floor: "Second Floor",
+                phone: "(555) 678-9012",
+                offers: "Buy toys worth $50, get 15% off + Free gift wrapping",
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 7,
+                name: "Gourmet Delights",
+                category: "food",
+                description: "International cuisine, fine dining, and artisanal food court",
+                rating: 4.7,
+                hours: "11:00 AM - 11:00 PM",
+                floor: "Second Floor",
+                phone: "(555) 789-0123",
+                offers: "Happy hour 3-6 PM daily + Weekend brunch specials",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 8,
+                name: "Cinema Complex",
+                category: "entertainment",
+                description: "Latest movies in IMAX, 4D, and premium recliner theaters",
+                rating: 4.8,
+                hours: "10:00 AM - 12:00 AM",
+                floor: "Second Floor",
+                phone: "(555) 890-1234",
+                offers: "Student discount available + VIP membership perks",
+                image: "https://images.unsplash.com/photo-1489599904472-84b0e19e8b0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        const eventsData = [
+            {
+                id: 1,
+                title: "Winter Fashion Week",
+                category: "fashion",
+                date: "2024-12-15",
+                endDate: "2024-12-17",
+                time: "10:00 AM - 8:00 PM",
+                location: "Central Atrium",
+                description: "Discover the latest winter collections from top international designers. Fashion shows, exclusive previews, and special discounts on luxury brands.",
+                price: "Free Entry",
+                organizer: "Fashion Central",
+                capacity: 500,
+                registered: 234,
+                image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 2,
+                title: "Holiday Family Fun Day",
+                category: "family",
+                date: "2024-12-20",
+                time: "12:00 PM - 6:00 PM",
+                location: "Kids Paradise Area",
+                description: "Special activities for kids, Santa meet & greet, face painting, holiday crafts, and amazing shopping deals for the whole family.",
+                price: "Free Entry",
+                organizer: "Mall Management",
+                capacity: 300,
+                registered: 156,
+                image: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 3,
+                title: "New Year's Eve Celebration",
+                category: "entertainment",
+                date: "2024-12-31",
+                time: "8:00 PM - 1:00 AM",
+                location: "Main Plaza",
+                description: "Ring in the new year with live music performances, countdown party, midnight fireworks display, and champagne toast.",
+                price: "$25 per person",
+                organizer: "Entertainment Hub",
+                capacity: 1000,
+                registered: 678,
+                image: "https://images.unsplash.com/photo-1467810563316-b5476525c0f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 4,
+                title: "Tech Innovation Expo",
+                category: "entertainment",
+                date: "2024-12-22",
+                time: "10:00 AM - 6:00 PM",
+                location: "Tech World",
+                description: "Latest gadgets, VR experiences, AI demonstrations, and tech talks by industry leaders. Interactive displays and hands-on experiences.",
+                price: "Free Entry",
+                organizer: "Tech World",
+                capacity: 400,
+                registered: 289,
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 5,
+                title: "Christmas Market",
+                category: "seasonal",
+                date: "2024-12-18",
+                endDate: "2024-12-24",
+                time: "10:00 AM - 9:00 PM",
+                location: "Ground Floor Lobby",
+                description: "Traditional Christmas market with handmade crafts, seasonal treats, hot cocoa, and unique gift ideas from local artisans.",
+                price: "Free Entry",
+                organizer: "Local Artisans",
+                capacity: 200,
+                registered: 145,
+                image: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 6,
+                title: "Fitness & Wellness Fair",
+                category: "family",
+                date: "2024-12-28",
+                time: "9:00 AM - 5:00 PM",
+                location: "Sports Zone",
+                description: "Health screenings, fitness classes, nutrition consultations, wellness product demos, and free yoga sessions for all ages.",
+                price: "Free Entry",
+                organizer: "Sports Zone",
+                capacity: 250,
+                registered: 98,
+                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        let currentStoreFilter = 'all';
+        let currentEventFilter = 'all';
+        let currentView = 'list';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStores();
+            loadEvents();
+            
+            const cards = document.querySelectorAll('.feature-card, .store-card, .event-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+            
+            setTimeout(animateCounter, 1000);
+        });
+
+        // Store Functions
+        function loadStores(filter = 'all') {
+            const storesGrid = document.getElementById('storesGrid');
+            const filteredStores = filter === 'all' ? storesData : storesData.filter(store => store.category === filter);
+            
+            storesGrid.innerHTML = filteredStores.map(store => `
+                <div class="store-card" onclick="showStoreDetails(${store.id})">
+                    <img src="${store.image}" alt="${store.name}" class="store-image" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">${store.name}</h3>
+                    <p style="margin-bottom: 1rem;">${store.description}</p>
+                    <div class="store-rating">
+                        ${'⭐'.repeat(Math.floor(store.rating))} ${store.rating}
+                    </div>
+                    <div class="store-hours">${store.hours}</div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: #ffd700; font-weight: bold;">
+                        🎉 ${store.offers}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterStores(category) {
+            currentStoreFilter = category;
+            
+            // Update active button
+            document.querySelectorAll('.store-filters .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            loadStores(category);
+        }
+
+        function searchStores() {
+            const searchTerm = document.getElementById('storeSearch').value.toLowerCase();
+            const storesGrid = document.getElementById('storesGrid');
+            
+            let filteredStores = currentStoreFilter === 'all' ? storesData : storesData.filter(store => store.category === currentStoreFilter);
+            
+            if (searchTerm) {
+                filteredStores = filteredStores.filter(store => 
+                    store.name.toLowerCase().includes(searchTerm) || 
+                    store.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            storesGrid.innerHTML = filteredStores.map(store => `
+                <div class="store-card" onclick="showStoreDetails(${store.id})">
+                    <img src="${store.image}" alt="${store.name}" class="store-image" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">${store.name}</h3>
+                    <p style="margin-bottom: 1rem;">${store.description}</p>
+                    <div class="store-rating">
+                        ${'⭐'.repeat(Math.floor(store.rating))} ${store.rating}
+                    </div>
+                    <div class="store-hours">${store.hours}</div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: #ffd700; font-weight: bold;">
+                        🎉 ${store.offers}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showStoreDetails(storeId) {
+            const store = storesData.find(s => s.id === storeId);
+            const modal = document.getElementById('storeModal');
+            const storeDetails = document.getElementById('storeDetails');
+            
+            storeDetails.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <img src="${store.image}" alt="${store.name}" style="width: 100%; max-width: 400px; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);" onerror="this.style.display='none';">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">${store.name}</h2>
+                    <div class="store-rating" style="font-size: 1.5rem;">
+                        ${'⭐'.repeat(Math.floor(store.rating))} ${store.rating}
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">About This Store</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">${store.description}</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong>📍 Location:</strong><br>${store.floor}
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong>🕒 Hours:</strong><br>${store.hours}
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong>📞 Phone:</strong><br>${store.phone}
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong>🎯 Category:</strong><br>${store.category.charAt(0).toUpperCase() + store.category.slice(1)}
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(45deg, #00b894, #00cec9); color: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0, 184, 148, 0.3);">
+                    <strong style="font-size: 1.2rem;">🎉 Current Offer:</strong><br>
+                    <span style="font-size: 1.1rem;">${store.offers}</span>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="event-rsvp" onclick="alert('Directions sent to your phone! 📱')">
+                        📍 Get Directions
+                    </button>
+                    <button class="event-rsvp" onclick="alert('Added to your favorites! ❤')">
+                        ❤ Add to Favorites
+                    </button>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        function closeStoreModal() {
+            document.getElementById('storeModal').style.display = 'none';
+        }
+
+        // Event Functions
+        function loadEvents(filter = 'all') {
+            const eventsContainer = document.getElementById('eventsContainer');
+            const filteredEvents = filter === 'all' ? eventsData : eventsData.filter(event => event.category === filter);
+            
+            if (currentView === 'list') {
+                eventsContainer.innerHTML = filteredEvents.map(event => `
+                    <div class="event-card" onclick="showEventDetails(${event.id})">
+                        <img src="${event.image}" alt="${event.title}" class="event-image" onerror="this.style.display='none';">
+                        <div class="event-content">
+                            <span class="event-date">${formatDate(event.date)}${event.endDate ? ' - ' + formatDate(event.endDate) : ''}</span>
+                            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">${event.title}</h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">${event.description}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #ffd700; font-weight: bold; font-size: 1.1rem;">${event.price}</span>
+                                <span style="font-size: 1rem; background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px;">${event.registered}/${event.capacity} registered</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                showCalendarView(filteredEvents);
+            }
+        }
+
+        function filterEvents(category) {
+            currentEventFilter = category;
+            
+            document.querySelectorAll('.event-filters .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            loadEvents(category);
+        }
+
+        function toggleView(view) {
+            currentView = view;
+            
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            loadEvents(currentEventFilter);
+        }
+
+        function showCalendarView(events) {
+            const eventsContainer = document.getElementById('eventsContainer');
+            
+            // Simple calendar for December 2024
+            let calendarHTML = '<div class="calendar-grid">';
+            
+            // Add day headers
+            const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayHeaders.forEach(day => {
+                calendarHTML += <div style="font-weight: bold; text-align: center; padding: 1rem; font-size: 1.2rem; background: rgba(255,255,255,0.2); border-radius: 10px;">${day}</div>;
+            });
+            
+            // Add calendar days
+            for (let day = 1; day <= 31; day++) {
+                const dayEvents = events.filter(event => {
+                    const eventDate = new Date(event.date);
+                    return eventDate.getDate() === day && eventDate.getMonth() === 11;
+                });
+                
+                calendarHTML += `
+                    <div class="calendar-day">
+                        <div style="font-weight: bold; margin-bottom: 0.5rem; font-size: 1.2rem;">${day}</div>
+                        ${dayEvents.map(event => `
+                            <div class="calendar-event" onclick="showEventDetails(${event.id})">
+                                ${event.title.substring(0, 12)}...
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            calendarHTML += '</div>';
+            eventsContainer.innerHTML = calendarHTML;
+        }
+
+        function showEventDetails(eventId) {
+            const event = eventsData.find(e => e.id === eventId);
+            const modal = document.getElementById('eventModal');
+            const eventDetails = document.getElementById('eventDetails');
+            
+            eventDetails.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <img src="${event.image}" alt="${event.title}" style="width: 100%; max-width: 500px; height: 250px; object-fit: cover; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);" onerror="this.style.display='none';">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">${event.title}</h2>
+                    <span class="event-date" style="font-size: 1.3rem;">
+                        ${formatDate(event.date)}${event.endDate ? ' - ' + formatDate(event.endDate) : ''}
+                    </span>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Event Details</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">${event.description}</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong>🕒 Time:</strong><br>${event.time}
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong>📍 Location:</strong><br>${event.location}
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong>💰 Price:</strong><br>${event.price}
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong>👥 Capacity:</strong><br>${event.registered}/${event.capacity}
+                    </div>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <strong style="font-size: 1.2rem;">Organized by:</strong> ${event.organizer}
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="event-rsvp" onclick="rsvpEvent(${event.id})">
+                        🎫 RSVP Now
+                    </button>
+                    <button class="event-rsvp" onclick="alert('Added to your calendar! 📅')">
+                        📅 Add to Calendar
+                    </button>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        function closeEventModal() {
+            document.getElementById('eventModal').style.display = 'none';
+        }
+
+        function rsvpEvent(eventId) {
+            const event = eventsData.find(e => e.id === eventId);
+            if (event.registered < event.capacity) {
+                event.registered++;
+                alert(🎉 Successfully registered for ${event.title}! Confirmation sent to your email. See you there!);
+                closeEventModal();
+                loadEvents(currentEventFilter);
+            } else {
+                alert('😔 Sorry, this event is fully booked! Please check our other amazing events.');
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animated counter
+        function animateCounter() {
+            const counter = document.getElementById('visitorCounter');
+            const target = Math.floor(Math.random() * 5000) + 2500;
+            let current = 0;
+            const increment = target / 100;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 20);
+        }
+
+        // Floor map functionality
+        function showFloor(floor) {
+            const buttons = document.querySelectorAll('.floor-button');
+            const floorInfo = document.getElementById('floorInfo');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const floorData = {
+                ground: {
+                    title: 'Ground Floor - Fashion & Accessories',
+                    description: 'Premium fashion brands, luxury jewelry stores, cosmetics boutiques, and our grand entrance lobby with concierge services.'
+                },
+                first: {
+                    title: 'First Floor - Electronics & Books',
+                    description: 'Latest tech stores, mobile phones, computers, gaming accessories, bookstore, and customer service center.'
+                },
+                second: {
+                    title: 'Second Floor - Food Court & Entertainment',
+                    description: 'International food court, IMAX cinema complex, gaming zone, kids play area, and family entertainment center.'
+                },
+                third: {
+                    title: 'Third Floor - Home & Lifestyle',
+                    description: 'Furniture stores, home decor, fitness center, spa services, and rooftop garden cafe with city views.'
+                }
+            };
+            
+            floorInfo.innerHTML = `
+                <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">${floorData[floor].title}</h4>
+                <p style="font-size: 1.1rem;">${floorData[floor].description}</p>
+            `;
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Dynamic background color change on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            
+            if (scrolled > 100) {
+                document.querySelector('.header').style.background = 'rgba(255, 107, 53, 0.95)';
+                document.querySelector('.header').style.backdropFilter = 'blur(15px)';
+            } else {
+                document.querySelector('.header').style.background = 'linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff4757 100%)';
+                document.querySelector('.header').style.backdropFilter = 'none';
+            }
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            const storeModal = document.getElementById('storeModal');
+            const eventModal = document.getElementById('eventModal');
+            
+            if (e.target === storeModal) {
+                storeModal.style.display = 'none';
+            }
+            if (e.target === eventModal) {
+                eventModal.style.display = 'none';
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b4ddb9c08edab3',t:'MTc1NDU0OTcwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
